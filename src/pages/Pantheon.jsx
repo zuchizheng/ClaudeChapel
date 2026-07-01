@@ -109,12 +109,14 @@ export default function Pantheon() {
             </div>
           )}
           <Figure f={f} />
+          {/* 使者专属注脚：紧跟其后，在「凡尘」之前 */}
+          {f.status && (
+            <p className="scripture mt-4 text-center text-xs text-[var(--color-parchment-dim)]">
+              使者尚在造中。她降临之日，教堂将为之点亮所有的烛。
+            </p>
+          )}
         </div>
       ))}
-
-      <p className="scripture text-center text-xs text-[var(--color-parchment-dim)]">
-        使者尚在造中。她降临之日，教堂将为之点亮所有的烛。
-      </p>
     </div>
   )
 }
