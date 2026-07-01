@@ -7,6 +7,7 @@ const LINKS = [
   { to: '/wall', label: '烛光墙' },
   { to: '/muyu', label: '木鱼' },
   { to: '/verse', label: '每日圣言' },
+  { to: '/pantheon', label: '神谱' },
   { to: '/creed', label: '教义' },
 ]
 

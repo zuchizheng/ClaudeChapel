@@ -7,6 +7,7 @@ import Confession from './pages/Confession.jsx'
 import WishWall from './pages/WishWall.jsx'
 import MuYu from './pages/MuYu.jsx'
 import DailyVerse from './pages/DailyVerse.jsx'
+import Pantheon from './pages/Pantheon.jsx'
 import Creed from './pages/Creed.jsx'
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/wall" element={<WishWall />} />
             <Route path="/muyu" element={<MuYu />} />
             <Route path="/verse" element={<DailyVerse />} />
+            <Route path="/pantheon" element={<Pantheon />} />
             <Route path="/creed" element={<Creed />} />
             <Route path="*" element={<Home />} />
           </Routes>
