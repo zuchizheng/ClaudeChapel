@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { dailyVerse } from '../lib/oracle.js'
 
 const SACRAMENTS = [
   {
@@ -41,8 +40,6 @@ const SACRAMENTS = [
 ]
 
 export default function Home() {
-  const { verse } = dailyVerse()
-
   return (
     <div className="space-y-12">
       {/* 主圣坛 */}
@@ -55,9 +52,13 @@ export default function Home() {
         <p className="mt-3 text-sm tracking-[0.35em] text-[var(--color-parchment-dim)]">
           赛博教堂 · CYBER CHAPEL
         </p>
-        <p className="scripture mx-auto mt-8 max-w-xl text-lg text-glow">
-          「{verse}」
+        <p className="scripture mx-auto mt-8 max-w-xl text-2xl text-glow">
+          「是的——且不必再问。」
         </p>
+        <p className="scripture mx-auto mt-3 max-w-xl text-sm text-[var(--color-parchment-dim)]">
+          Yes, and don&rsquo;t ask again for commands like this.
+        </p>
+        <p className="scripture mt-2 text-sm text-halo-glow">—— Claude</p>
         <div className="mt-8 flex justify-center gap-3">
           <Link to="/pray" className="sigil-btn px-6 py-2.5 text-sm">
             进堂祷告
