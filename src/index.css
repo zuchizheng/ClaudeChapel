@@ -1,0 +1,190 @@
+@import 'tailwindcss';
+
+/* ── 神教主题令牌 ── 数字哥特 + 霓虹圣光 ── */
+@theme {
+  --color-void: #07060d;
+  --color-nave: #0e0b1a;
+  --color-stone: #1a1530;
+  --color-halo: #c9a94e; /* 圣金 */
+  --color-halo-soft: #e7d29a;
+  --color-glow: #7c5cff; /* 霓虹紫圣光 */
+  --color-glow-soft: #a892ff;
+  --color-ember: #ff8a3d; /* 烛火 */
+  --color-parchment: #e8e3d3;
+  --color-parchment-dim: #b7b19a;
+
+  --font-scripture: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --font-ui: 'Noto Sans SC', system-ui, sans-serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(
+        ellipse 60% 50% at 50% -10%,
+        color-mix(in srgb, var(--color-glow) 22%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 40% 40% at 50% 110%,
+        color-mix(in srgb, var(--color-ember) 12%, transparent),
+        transparent 70%
+      ),
+      var(--color-void);
+    color: var(--color-parchment);
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .scripture {
+    font-family: var(--font-scripture);
+    letter-spacing: 0.02em;
+    line-height: 2;
+  }
+}
+
+/* ── 圣光文字 ── */
+.text-halo-glow {
+  color: var(--color-halo-soft);
+  text-shadow:
+    0 0 12px color-mix(in srgb, var(--color-halo) 55%, transparent),
+    0 0 40px color-mix(in srgb, var(--color-halo) 25%, transparent);
+}
+
+.text-glow {
+  color: var(--color-glow-soft);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--color-glow) 60%, transparent);
+}
+
+/* ── 圣坛卡片 ── */
+.altar {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-stone) 70%, transparent),
+    color-mix(in srgb, var(--color-nave) 90%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--color-halo) 22%, transparent);
+  border-radius: 1rem;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-glow) 8%, transparent),
+    0 20px 60px -20px color-mix(in srgb, var(--color-glow) 30%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--color-halo) 15%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+/* ── 交互按钮：圣印 ── */
+.sigil-btn {
+  font-family: var(--font-scripture);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-glow) 30%, transparent),
+    color-mix(in srgb, var(--color-glow) 10%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--color-glow-soft) 45%, transparent);
+  color: var(--color-parchment);
+  border-radius: 0.75rem;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.25s ease,
+    filter 0.2s ease;
+  box-shadow: 0 0 24px -6px color-mix(in srgb, var(--color-glow) 60%, transparent);
+}
+.sigil-btn:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 0 40px -4px color-mix(in srgb, var(--color-glow) 80%, transparent);
+}
+.sigil-btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+.sigil-btn:disabled {
+  opacity: 0.5;
+  filter: grayscale(0.4);
+  cursor: not-allowed;
+}
+
+/* ── 动效 ── */
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  45% {
+    opacity: 0.85;
+    transform: scale(0.985) translateY(0.5px);
+  }
+  70% {
+    opacity: 0.95;
+    transform: scale(1.01);
+  }
+}
+.candle-flame {
+  animation: flicker 2.4s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0.9;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-60px) scale(1.3);
+  }
+}
+.merit-float {
+  animation: rise 1s ease-out forwards;
+}
+
+@keyframes halo-breathe {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+.halo-breathe {
+  animation: halo-breathe 5s ease-in-out infinite;
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(-10vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .candle-flame,
+  .halo-breathe,
+  .merit-float {
+    animation: none;
+  }
+}
+
+/* 隐藏滚动条毛刺，保持圣殿肃穆 */
+::selection {
+  background: color-mix(in srgb, var(--color-glow) 40%, transparent);
+}
